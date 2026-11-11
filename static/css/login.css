@@ -1,0 +1,362 @@
+
+/* =================================
+   LINKLY LOGIN PAGE
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(111, 65, 220, 0.10), transparent 35%),
+        radial-gradient(circle at 85% 85%, rgba(73, 100, 255, 0.08), transparent 35%),
+        #090911;
+
+    color: #f5f5ff;
+    font-family: 'Inter', sans-serif;
+    padding: 35px 20px;
+}
+
+/* =================================
+   MAIN WRAPPER
+================================= */
+
+.login-wrapper {
+    width: 100%;
+    max-width: 430px;
+}
+
+/* =================================
+   BRAND
+================================= */
+
+.brand {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.brand-name {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.brand-name span {
+    color: #9670ff;
+}
+
+.brand p {
+    color: #85859b;
+    font-size: 13px;
+    margin-top: 9px;
+}
+
+/* =================================
+   LOGIN CARD
+================================= */
+
+.login-card {
+    width: 100%;
+    background: #141421;
+    border: 1px solid #292940;
+    border-radius: 22px;
+    padding: 32px;
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+
+    animation: cardEntry 0.5s ease;
+}
+
+@keyframes cardEntry {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =================================
+   HEADING
+================================= */
+
+.heading {
+    margin-bottom: 24px;
+}
+
+.heading h2 {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.heading p {
+    color: #85859b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* =================================
+   LOGIN OPTIONS
+================================= */
+
+.login-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.login-option {
+    background: #0d0d19;
+    border: 1px solid #303047;
+    color: #aaaabe;
+
+    padding: 14px 8px;
+    border-radius: 12px;
+
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.login-option:hover {
+    border-color: #9165ff;
+    transform: translateY(-1px);
+}
+
+.login-option.active {
+    background: rgba(132, 89, 255, 0.14);
+    border-color: #9165ff;
+    color: #ad91ff;
+
+    box-shadow: 0 0 15px rgba(145, 101, 255, 0.08);
+}
+
+/* =================================
+   FORM GROUP
+================================= */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #c6c6d8;
+    margin-bottom: 9px;
+}
+
+/* =================================
+   INPUT FIELDS
+================================= */
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+
+    background: #0c0c17;
+    border: 1px solid #303047;
+    border-radius: 11px;
+
+    color: white;
+    font-size: 14px;
+    font-family: inherit;
+
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.form-group input:focus {
+    border-color: #9165ff;
+    box-shadow: 0 0 0 3px rgba(145, 101, 255, 0.12);
+}
+
+.form-group input::placeholder {
+    color: #66667b;
+}
+
+.form-group .password-input {
+    padding-right: 70px;
+}
+
+/* =================================
+   PASSWORD TOGGLE
+================================= */
+
+.toggle-password {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+
+    color: #a99aff;
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.toggle-password:hover {
+    color: white;
+}
+
+/* =================================
+   SUBMIT BUTTON
+================================= */
+
+.submit-btn {
+    width: 100%;
+    border: none;
+    border-radius: 11px;
+
+    padding: 16px;
+    margin-top: 5px;
+
+    background: linear-gradient(100deg, #8956f6, #526eff);
+
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(119, 90, 255, 0.3);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* =================================
+   REGISTER LINK
+================================= */
+
+.auth-switch {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-top: 23px;
+
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.auth-switch span {
+    color: #9292aa;
+}
+
+.auth-switch a {
+    color: #a78bfa;
+    font-weight: 700;
+
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.auth-switch a:hover {
+    color: #ffffff;
+}
+
+/* =================================
+   ERROR MESSAGE
+================================= */
+
+.error-message {
+    background: rgba(255, 75, 75, 0.1);
+    border: 1px solid rgba(255, 75, 75, 0.3);
+
+    color: #ff8888;
+
+    padding: 12px;
+    border-radius: 9px;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+
+    color: #77778d;
+    font-size: 11px;
+}
+
+.footer span {
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 25px 16px;
+    }
+
+    .login-wrapper {
+        max-width: 100%;
+    }
+
+    .login-card {
+        padding: 26px 21px;
+    }
+
+    .heading h2 {
+        font-size: 22px;
+    }
+
+    .brand-name {
+        font-size: 32px;
+    }
+
+    .login-option {
+        font-size: 12px;
+        padding: 13px 5px;
+    }
+
+}

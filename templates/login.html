@@ -1,0 +1,451 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Linkly</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(111, 65, 220, 0.10), transparent 35%),
+                radial-gradient(circle at 85% 85%, rgba(73, 100, 255, 0.08), transparent 35%),
+                #090911;
+            color: #f5f5ff;
+            font-family: 'Inter', sans-serif;
+            padding: 35px 20px;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        /* BRAND */
+
+        .brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-name {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .brand-name span {
+            color: #9670ff;
+        }
+
+        .brand p {
+            color: #85859b;
+            font-size: 13px;
+            margin-top: 9px;
+        }
+
+        /* LOGIN CARD */
+
+        .login-card {
+            background: #141421;
+            border: 1px solid #292940;
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 20px 70px rgba(0,0,0,.35);
+        }
+
+        .heading {
+            margin-bottom: 24px;
+        }
+
+        .heading h2 {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 9px;
+        }
+
+        .heading p {
+            color: #85859b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* LOGIN OPTIONS */
+
+        .login-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .login-option {
+            background: #0d0d19;
+            border: 1px solid #303047;
+            color: #aaaabe;
+            padding: 14px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .25s;
+        }
+
+        .login-option.active {
+            background: rgba(132, 89, 255, .14);
+            border-color: #9165ff;
+            color: #ad91ff;
+        }
+
+        .login-option:hover {
+            border-color: #9165ff;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #c6c6d8;
+            margin-bottom: 9px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #0c0c17;
+            border: 1px solid #303047;
+            border-radius: 11px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            transition: .2s;
+        }
+
+        input:focus {
+            border-color: #9165ff;
+            box-shadow: 0 0 0 3px rgba(145,101,255,.12);
+        }
+
+        input::placeholder {
+            color: #66667b;
+        }
+
+        .password-input {
+            padding-right: 70px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #a99aff;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* SUBMIT BUTTON */
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            border-radius: 11px;
+            padding: 16px;
+            margin-top: 5px;
+            background: linear-gradient(100deg, #8956f6, #526eff);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(119,90,255,.3);
+        }
+
+        .submit-btn:active {
+            transform: scale(.98);
+        }
+
+        /* REGISTER LINK - FIXED */
+
+        .auth-switch {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 23px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .auth-switch span {
+            color: #9292aa;
+        }
+
+        .auth-switch a {
+            color: #a78bfa;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .auth-switch a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* ERROR MESSAGE */
+
+        .error-message {
+            background: rgba(255, 75, 75, .1);
+            border: 1px solid rgba(255, 75, 75, .3);
+            color: #ff8888;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 12px;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #77778d;
+            font-size: 11px;
+        }
+
+        .footer span {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 480px) {
+            body {
+                padding: 25px 16px;
+            }
+
+            .login-card {
+                padding: 26px 21px;
+            }
+
+            .heading h2 {
+                font-size: 22px;
+            }
+
+            .brand-name {
+                font-size: 32px;
+            }
+
+            .login-option {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <!-- BRAND -->
+    <div class="brand">
+        <div class="brand-name">↗ linkly<span>.</span></div>
+        <p>Short links. Big possibilities.</p>
+    </div>
+
+    <!-- LOGIN CARD -->
+    <div class="login-card">
+
+        <div class="heading">
+            <h2 id="loginHeading">Welcome Back!</h2>
+            <p id="loginDescription">
+                Sign in to manage your short links.
+            </p>
+        </div>
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <!-- LOGIN TYPE -->
+            <div class="login-options">
+
+                <button type="button"
+                        class="login-option active"
+                        id="userOption"
+                        onclick="selectLogin('user')">
+                    👤 User Login
+                </button>
+
+                <button type="button"
+                        class="login-option"
+                        id="adminOption"
+                        onclick="selectLogin('admin')">
+                    🛡 Admin Login
+                </button>
+
+            </div>
+
+            <input type="hidden"
+                   name="login_type"
+                   id="loginType"
+                   value="user">
+
+            <!-- DJANGO MESSAGES -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- USERNAME -->
+            <div class="form-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="password-input"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        onclick="togglePassword()"
+                        id="toggleBtn">
+                        SHOW
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- SIGN IN -->
+            <button type="submit" class="submit-btn">
+                Sign In →
+            </button>
+
+            <!-- REGISTER LINK -->
+            <div class="auth-switch">
+                <span>Don't have an account?</span>
+                <a href="{% url 'register' %}">
+                    Create Account
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        Secure access powered by <span>Linkly.</span>
+    </div>
+
+</div>
+
+<script>
+
+    // USER / ADMIN LOGIN SWITCH
+
+    function selectLogin(type) {
+
+        document.getElementById('loginType').value = type;
+
+        const userOption = document.getElementById('userOption');
+        const adminOption = document.getElementById('adminOption');
+
+        userOption.classList.toggle('active', type === 'user');
+        adminOption.classList.toggle('active', type === 'admin');
+
+        document.getElementById('loginHeading').textContent =
+            type === 'admin' ? 'Admin Login' : 'Welcome Back!';
+
+        document.getElementById('loginDescription').textContent =
+            type === 'admin'
+            ? 'Access your Linkly administration dashboard.'
+            : 'Sign in to manage your short links.';
+    }
+
+    // SHOW / HIDE PASSWORD
+
+    function togglePassword() {
+
+        const password = document.getElementById('password');
+        const button = document.getElementById('toggleBtn');
+
+        if (password.type === 'password') {
+
+            password.type = 'text';
+            button.textContent = 'HIDE';
+
+        } else {
+
+            password.type = 'password';
+            button.textContent = 'SHOW';
+
+        }
+    }
+
+</script>
+
+</body>
+</html>

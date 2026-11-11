@@ -1,0 +1,103 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Linkly</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<div class="register-container">
+
+    <div class="brand">
+        <a href="{% url 'home' %}">↗ linkly<span>.</span></a>
+        <p>Short links. Big possibilities.</p>
+    </div>
+
+    <div class="register-card">
+
+        <div class="card-heading">
+            <div class="icon-box">✦</div>
+            <h1>Create your account</h1>
+            <p>Join Linkly and start creating smarter links.</p>
+        </div>
+
+        <form method="POST" class="register-form">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="error-message">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">Full Name</label>
+                {{ form.first_name }}
+                {% for error in form.first_name.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email Address</label>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Password</label>
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="register-btn">
+                Create Account <span>→</span>
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Sign in</a>
+        </div>
+
+
+    </div>
+
+    <p class="footer-text">
+        © 2026 Linkly. Smart links. Better insights.
+    </p>
+
+</div>
+
+</body>
+</html>
